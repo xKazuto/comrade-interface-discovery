@@ -91,38 +91,60 @@ const Terminal = () => {
   return (
     <div className="terminal-container min-h-screen bg-terminal text-terminal-foreground p-8">
       <div className="scan-line" />
-      <div className="grid grid-cols-[300px_1fr] gap-8 max-w-6xl mx-auto">
-        <div className="space-y-8">
-          <div className="flex justify-between items-center mb-4">
-            <button
-              onClick={activateDebugMode}
-              className="flex items-center gap-2 px-3 py-1 border border-terminal-foreground hover:bg-terminal-foreground/10 transition-colors"
-              title="Activate Debug Mode"
-            >
-              <TerminalIcon className="w-4 h-4" />
-              <span>DEBUG</span>
-            </button>
-          </div>
-          <div className="border border-terminal-foreground p-4">
-            <div className="mb-4">
-              <h2 className="text-lg terminal-text mb-2 flex items-center">SYSTEM FILES</h2>
-            </div>
-            <FolderList
-              folders={folders}
-              selectedFolder={selectedFolder}
-              selectedFile={selectedFile}
-              passwordInput={passwordInput}
-              onFolderClick={handleFolderClick}
-              onFileClick={handleFileClick}
-              onPasswordChange={setPasswordInput}
-              onPasswordSubmit={handlePasswordSubmit}
-            />
-          </div>
-          {showConsole && (
-            <CommandConsole onConnect={handleConnect} connected={isConnected} />
-          )}
+      <div className="relative z-10">
+        {/* CRT screen effect overlay */}
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute inset-0 bg-[linear-gradient(to_bottom,rgba(0,0,0,0.8),rgba(0,0,0,0.5))]" />
+          <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1IiBoZWlnaHQ9IjUiPgo8cmVjdCB3aWR0aD0iMSIgaGVpZ2h0PSIxIiBmaWxsPSIjMjIyIj48L3JlY3Q+Cjwvc3ZnPg==')] opacity-10" />
         </div>
-        <FileViewer selectedFile={selectedFile} />
+
+        <div className="grid grid-cols-[300px_1fr] gap-8 max-w-6xl mx-auto backdrop-blur-[1px]">
+          <div className="space-y-8">
+            <div className="flex justify-between items-center mb-4">
+              <button
+                onClick={activateDebugMode}
+                className="flex items-center gap-2 px-3 py-1 border border-terminal-foreground/30 hover:bg-terminal-foreground/10 transition-colors terminal-text group relative"
+                title="Activate Debug Mode"
+              >
+                <div className="absolute inset-0 bg-terminal-foreground/5 group-hover:bg-terminal-foreground/10 transition-colors" />
+                <TerminalIcon className="w-4 h-4 relative z-10" />
+                <span className="relative z-10">DEBUG</span>
+              </button>
+            </div>
+            <div className="border border-terminal-foreground/30 bg-black/40 backdrop-blur-sm p-4 relative">
+              <div className="absolute inset-0 bg-terminal-foreground/5" />
+              <div className="relative z-10">
+                <div className="mb-4">
+                  <h2 className="text-lg terminal-text mb-2 flex items-center tracking-wider">SYSTEM FILES</h2>
+                </div>
+                <FolderList
+                  folders={folders}
+                  selectedFolder={selectedFolder}
+                  selectedFile={selectedFile}
+                  passwordInput={passwordInput}
+                  onFolderClick={handleFolderClick}
+                  onFileClick={handleFileClick}
+                  onPasswordChange={setPasswordInput}
+                  onPasswordSubmit={handlePasswordSubmit}
+                />
+              </div>
+            </div>
+            {showConsole && (
+              <div className="relative">
+                <div className="absolute -inset-px bg-terminal-foreground/20 blur-sm" />
+                <div className="relative">
+                  <CommandConsole onConnect={handleConnect} connected={isConnected} />
+                </div>
+              </div>
+            )}
+          </div>
+          <div className="border border-terminal-foreground/30 bg-black/40 backdrop-blur-sm p-4 relative min-h-[600px]">
+            <div className="absolute inset-0 bg-terminal-foreground/5" />
+            <div className="relative z-10">
+              <FileViewer selectedFile={selectedFile} />
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
