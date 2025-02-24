@@ -12,7 +12,7 @@ const Login = ({ onLogin }: LoginProps) => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (password === 'SECTOR7') {
+    if (password === '09051945') {
       onLogin();
     } else {
       setError('ACCESS DENIED');
