@@ -73,8 +73,7 @@ export const folderStructure: FolderType[] = [
       },
       {
         name: 'MEMO KEEP DOORS CLOSED!',
-        content: 'NOTICE TO ALL STATIONED PERSONNEL\nREGARDING OPEN DOORS\n\nIt has come to our attention that some individuals believe that doors are merely decorative elements rather than functional barriers. This is a reminder that doors exist for a reason:\n\nTo keep the cold out. This is not Siberia; let’s not make it feel like it is.\nTo keep the heat in. The heating budget is not unlimited, despite popular belief.\nTo prevent unauthorized wildlife from joining us for meals. If you want a pet, visit a shelter, not the cafeteria.\nIf you open a door, kindly close it behind you. If you see an open door, assume it wasn’t meant to be. If you are unsure, close it anyway.\n\nLet’s work together to maintain order and prevent turning the base into a wind tunnel.\n\nHR Department
-',
+        content: 'NOTICE TO ALL STATIONED PERSONNEL\nREGARDING OPEN DOORS\n\nIt has come to our attention that some individuals believe that doors are merely decorative elements rather than functional barriers. This is a reminder that doors exist for a reason:\n\nTo keep the cold out. This is not Siberia; let’s not make it feel like it is.\nTo keep the heat in. The heating budget is not unlimited, despite popular belief.\nTo prevent unauthorized wildlife from joining us for meals. If you want a pet, visit a shelter, not the cafeteria.\nIf you open a door, kindly close it behind you. If you see an open door, assume it wasn’t meant to be. If you are unsure, close it anyway.\n\nLet’s work together to maintain order and prevent turning the base into a wind tunnel.\n\nHR Department',
         type: 'text'
       }
     ]
