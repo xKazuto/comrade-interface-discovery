@@ -57,13 +57,24 @@ export const folderStructure: FolderType[] = [
     name: "MEMOS",
     files: [
       {
+        name: 'MEMO CAFETERIA',
+        content: 'NOTICE\nTo all stationed personnel!\nDue to numerous complaints about the quality of food in the cafeteria, HR would like to clarify the following:\n\nYes, we have also seen the cooks tenderizing cutlets against the radiator.\nYes, the borscht does have an inexplicably green tint.\nYes, the porridge has the consistency of construction cement.\nUnfortunately, no alternative options are available at this time.\nThank you for your understanding.\n\nHR Department',
+        type: 'text'
+      },
+      {
         name: 'MEMO TO TECHNICIAN PETROV',
         content: 'To: Viktor Petrov\nFrom: Kollia Vishkov, On-Site Supervisor\nSubject: STOP CRASHING THE BACKUP SERVER WITH YOUR DAMN STORIES\n\nViktor,\n\nFor the last time—STOP uploading your ridiculous, bloated, completely fictional nonsense to the backup server. It’s there to store critical data, not your never-ending saga of space wizards, vampire accountants, or whatever nonsense you’ve come up with this week.\n\nYou’ve crashed the system AGAIN. That’s the THIRD time this month. Because of you, real work was lost, backups failed, and IT is once again demanding overtime to clean up your mess.\n\nHow many times do I have to say this? The backup server is for BUSINESS-CRITICAL FILES—not your 800-page monstrosities that no one asked for! If you want to write a novel, get a personal hard drive, a notebook, or hell, carve it into stone for all I care—just KEEP IT OFF THE BACKUP SERVER.\n\nThanks to this, the server is now only responding to Telnet connections.\n\nKollia Vishkov\nOn-Site Supervisor',
         type: 'text'
       },
       {
-        name: 'MEMO PASSWORDS',
-        content: 'To: Viktor Petrov\nFrom: Kollia Vishkov, On-Site Supervisor\nSubject: YOURE NOT AS CLEVER AS YOU THINK, VIKTOR\n\nViktor,\n\nOnce again, I’ve had to change the classified folder password **because of you.** You seem to think you’re some kind of genius, crafting an elaborate, uncrackable security system by cycling through country names like this is some top-tier encryption method. *Spoiler alert:* It’s not.\n\nFirst, it was < cyprus >, then < sweden >, then < morocco >. I assume you thought this was some *big-brain* move, that no one would figure out your little sequence. Well, congratulations—you’re as predictable as a children’s puzzle.\n\nTo prove just how *not* smart you are, I’ve changed the password to exactly what you expected next. That’s right, Viktor, your brilliant scheme has been completely undone by sheer, brutal simplicity.\n\nNext time, instead of playing wannabe cryptographer, maybe just **follow protocol** like the rest of us. If you touch this password **one more time**, I’ll personally make sure the next one is \< ViktorHasNoAccess. >\n\nKollia Vishkov\nOn-Site Supervisor',
+        name: 'MEMO CAFETERIA',
+        content: 'NOTICE\nTo all stationed personnel!\nDue to numerous complaints about the quality of food in the cafeteria, HR would like to clarify the following:\n\nYes, we have also seen the cooks tenderizing cutlets against the radiator.\nYes, the borscht does have an inexplicably green tint.\nYes, the porridge has the consistency of construction cement.\nUnfortunately, no alternative options are available at this time.\nThank you for your understanding.\n\nHR Department',
+        type: 'text'
+      },
+      {
+        name: 'MEMO KEEP DOORS CLOSED!',
+        content: 'NOTICE TO ALL STATIONED PERSONNEL\nREGARDING OPEN DOORS\n\nIt has come to our attention that some individuals believe that doors are merely decorative elements rather than functional barriers. This is a reminder that doors exist for a reason:\n\nTo keep the cold out. This is not Siberia; let’s not make it feel like it is.\nTo keep the heat in. The heating budget is not unlimited, despite popular belief.\nTo prevent unauthorized wildlife from joining us for meals. If you want a pet, visit a shelter, not the cafeteria.\nIf you open a door, kindly close it behind you. If you see an open door, assume it wasn’t meant to be. If you are unsure, close it anyway.\n\nLet’s work together to maintain order and prevent turning the base into a wind tunnel.\n\nHR Department
+',
         type: 'text'
       }
     ]
