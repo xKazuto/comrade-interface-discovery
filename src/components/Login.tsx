@@ -6,13 +6,32 @@ interface LoginProps {
   onLogin: () => void;
 }
 
+interface LoginLog {
+  timestamp: string;
+  simulatedIP: string;
+}
+
 const Login = ({ onLogin }: LoginProps) => {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const [logs] = useState<LoginLog[]>([]);
+
+  // Simulate an IP address for demonstration
+  const generateSimulatedIP = () => {
+    return `192.168.${Math.floor(Math.random() * 255)}.${Math.floor(Math.random() * 255)}`;
+  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (password === '09051945') {
+      // Log the successful login
+      const loginLog: LoginLog = {
+        timestamp: new Date().toISOString(),
+        simulatedIP: generateSimulatedIP()
+      };
+      logs.push(loginLog);
+      console.log('Successful login:', loginLog);
+      
       onLogin();
     } else {
       setError('ACCESS DENIED');
