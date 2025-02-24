@@ -1,15 +1,84 @@
 
 import React, { useState } from 'react';
-import { File, Folder } from 'lucide-react';
+import { File, Folder, Lock, Unlock } from 'lucide-react';
+import { Input } from "./ui/input";
+import { toast } from "./ui/use-toast";
 
-const files = {
-  'PROJECT_NOTES.txt': 'CLASSIFIED INFORMATION:\nProject Status: ONGOING\nSecurity Level: TOP SECRET\nLast Update: 1992-06-15\n\nFurther details restricted.',
-  'LOG_1991.txt': 'System Log - 1991\nMultiple anomalies detected\nProject advancement: 67%\nRequiring immediate attention.',
-  'MANIFEST.txt': 'Equipment Manifest:\n- Spectrometer MK3\n- Containment Unit B7\n- [REDACTED]\n\nNote: All equipment must be properly decontaminated.',
+type FileType = {
+  name: string;
+  content: string;
 };
 
+type FolderType = {
+  name: string;
+  password?: string;
+  files: FileType[];
+  isLocked?: boolean;
+};
+
+const folderStructure: FolderType[] = [
+  {
+    name: "CLASSIFIED",
+    password: "7777",
+    isLocked: true,
+    files: [
+      {
+        name: 'PROJECT_NOTES.txt',
+        content: 'CLASSIFIED INFORMATION:\nProject Status: ONGOING\nSecurity Level: TOP SECRET\nLast Update: 1992-06-15\n\nFurther details restricted.'
+      }
+    ]
+  },
+  {
+    name: "PUBLIC",
+    files: [
+      {
+        name: 'LOG_1991.txt',
+        content: 'System Log - 1991\nMultiple anomalies detected\nProject advancement: 67%\nRequiring immediate attention.'
+      },
+      {
+        name: 'MANIFEST.txt',
+        content: 'Equipment Manifest:\n- Spectrometer MK3\n- Containment Unit B7\n- [REDACTED]\n\nNote: All equipment must be properly decontaminated.'
+      }
+    ]
+  }
+];
+
 const Terminal = () => {
-  const [selectedFile, setSelectedFile] = useState<string | null>(null);
+  const [selectedFolder, setSelectedFolder] = useState<FolderType | null>(null);
+  const [selectedFile, setSelectedFile] = useState<FileType | null>(null);
+  const [folderPasswords, setFolderPasswords] = useState<Record<string, string>>({});
+  const [passwordInput, setPasswordInput] = useState<string>("");
+  const [folders, setFolders] = useState<FolderType[]>(folderStructure);
+
+  const handleFolderClick = (folder: FolderType) => {
+    if (folder.password && folder.isLocked) {
+      setSelectedFolder(folder);
+      setSelectedFile(null);
+    } else {
+      setSelectedFolder(folder);
+      setSelectedFile(null);
+    }
+  };
+
+  const handlePasswordSubmit = (folder: FolderType) => {
+    if (passwordInput === folder.password) {
+      const updatedFolders = folders.map(f => 
+        f.name === folder.name ? { ...f, isLocked: false } : f
+      );
+      setFolders(updatedFolders);
+      setPasswordInput("");
+      toast({
+        title: "Access Granted",
+        description: `Folder ${folder.name} unlocked`,
+      });
+    } else {
+      toast({
+        title: "Access Denied",
+        description: "Incorrect password",
+        variant: "destructive",
+      });
+    }
+  };
 
   return (
     <div className="terminal-container min-h-screen bg-terminal text-terminal-foreground p-8">
@@ -23,28 +92,67 @@ const Terminal = () => {
             </h2>
           </div>
           <div className="space-y-2">
-            {Object.keys(files).map((fileName) => (
-              <button
-                key={fileName}
-                onClick={() => setSelectedFile(fileName)}
-                className={`w-full text-left p-2 flex items-center hover:bg-terminal-foreground/10 ${
-                  selectedFile === fileName ? 'bg-terminal-foreground/20' : ''
-                }`}
-              >
-                <File className="w-4 h-4 mr-2" />
-                {fileName}
-              </button>
+            {folders.map((folder) => (
+              <div key={folder.name} className="space-y-1">
+                <button
+                  onClick={() => handleFolderClick(folder)}
+                  className={`w-full text-left p-2 flex items-center hover:bg-terminal-foreground/10 ${
+                    selectedFolder?.name === folder.name ? 'bg-terminal-foreground/20' : ''
+                  }`}
+                >
+                  {folder.password ? (
+                    folder.isLocked ? <Lock className="w-4 h-4 mr-2" /> : <Unlock className="w-4 h-4 mr-2" />
+                  ) : (
+                    <Folder className="w-4 h-4 mr-2" />
+                  )}
+                  {folder.name}
+                </button>
+                {selectedFolder?.name === folder.name && (
+                  <div className="pl-6 space-y-1">
+                    {folder.isLocked && folder.password ? (
+                      <div className="flex space-x-2 p-2">
+                        <Input
+                          type="password"
+                          value={passwordInput}
+                          onChange={(e) => setPasswordInput(e.target.value)}
+                          placeholder="Enter password"
+                          className="flex-1 h-8 bg-terminal text-terminal-foreground border-terminal-foreground"
+                        />
+                        <button
+                          onClick={() => handlePasswordSubmit(folder)}
+                          className="px-2 py-1 border border-terminal-foreground hover:bg-terminal-foreground/10"
+                        >
+                          UNLOCK
+                        </button>
+                      </div>
+                    ) : (
+                      folder.files.map((file) => (
+                        <button
+                          key={file.name}
+                          onClick={() => setSelectedFile(file)}
+                          className={`w-full text-left p-2 flex items-center hover:bg-terminal-foreground/10 ${
+                            selectedFile?.name === file.name ? 'bg-terminal-foreground/20' : ''
+                          }`}
+                        >
+                          <File className="w-4 h-4 mr-2" />
+                          {file.name}
+                        </button>
+                      ))
+                    )}
+                  </div>
+                )}
+              </div>
             ))}
           </div>
         </div>
         <div className="border border-terminal-foreground p-4">
           <div className="mb-4">
             <h2 className="text-lg terminal-text mb-2">
-              {selectedFile || 'NO FILE SELECTED'}
+              {selectedFile?.name || 'NO FILE SELECTED'}
             </h2>
           </div>
           <div className="font-mono whitespace-pre-wrap terminal-text">
-            {selectedFile ? files[selectedFile as keyof typeof files] : 'SELECT A FILE TO VIEW CONTENTS'}
+            {selectedFile ? selectedFile.content : 'SELECT A FILE TO VIEW CONTENTS'}
           </div>
         </div>
       </div>
