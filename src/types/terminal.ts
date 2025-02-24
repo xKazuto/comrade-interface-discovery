@@ -8,6 +8,8 @@ export type FileType = {
   originalContent?: string;
   type?: 'text' | 'image';
   imageUrl?: string;
+  corruptedImageUrl?: string;
+  encryptedImageUrl?: string;
 };
 
 export type FolderType = {

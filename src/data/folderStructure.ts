@@ -16,6 +16,7 @@ export const folderStructure: FolderType[] = [
         content: 'Loading image...',
         type: 'image',
         imageUrl: 'https://images.unsplash.com/photo-1485827404703-89b55fcc595e',
+        corruptedImageUrl: 'https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5',
         isCorrupted: true,
         originalContent: 'Loading image...'
       },
@@ -26,6 +27,15 @@ export const folderStructure: FolderType[] = [
         type: 'text',
         isEncrypted: true,
         decryptionKey: 'SIGMA-7'
+      },
+      {
+        name: 'CLASSIFIED_IMAGE.img',
+        content: 'Loading image...',
+        type: 'image',
+        imageUrl: 'https://images.unsplash.com/photo-1485827404703-89b55fcc595e',
+        encryptedImageUrl: 'https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5',
+        isEncrypted: true,
+        decryptionKey: 'IMAGE-7'
       }
     ]
   },

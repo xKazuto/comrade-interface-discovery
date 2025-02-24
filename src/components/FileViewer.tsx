@@ -44,6 +44,19 @@ const FileViewer = ({ selectedFile }: FileViewerProps) => {
     }
   };
 
+  const getDisplayImageUrl = () => {
+    if (selectedFile.type === 'image') {
+      if (selectedFile.isCorrupted) {
+        return selectedFile.corruptedImageUrl || selectedFile.imageUrl;
+      }
+      if (selectedFile.isEncrypted && !isDecrypted) {
+        return selectedFile.encryptedImageUrl || selectedFile.imageUrl;
+      }
+      return selectedFile.imageUrl;
+    }
+    return null;
+  };
+
   return (
     <div className="border border-terminal-foreground p-4">
       <div className="mb-4">
@@ -91,9 +104,9 @@ const FileViewer = ({ selectedFile }: FileViewerProps) => {
           {selectedFile.type === 'image' ? (
             <div className="relative">
               <img
-                src={selectedFile.imageUrl}
+                src={getDisplayImageUrl() || ''}
                 alt={selectedFile.name}
-                className={`max-w-full h-auto ${selectedFile.isCorrupted ? 'opacity-50 grayscale' : ''}`}
+                className="max-w-full h-auto"
                 onError={(e) => {
                   e.currentTarget.src = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
                   toast({
