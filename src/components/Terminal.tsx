@@ -1,6 +1,6 @@
 
 import React, { useState, useCallback } from 'react';
-import { File, Folder, Lock, Unlock, AlertTriangle, Terminal as TerminalIcon } from 'lucide-react';
+import { File, Folder, Lock, Unlock, AlertTriangle, Terminal as TerminalIcon, Image as ImageIcon } from 'lucide-react';
 import { Input } from "./ui/input";
 import { toast } from "./ui/use-toast";
 import CommandConsole from './CommandConsole';
@@ -10,6 +10,8 @@ type FileType = {
   content: string;
   isCorrupted?: boolean;
   originalContent?: string;
+  type?: 'text' | 'image';
+  imageUrl?: string;
 };
 
 type FolderType = {
@@ -27,7 +29,16 @@ const folderStructure: FolderType[] = [
     files: [
       {
         name: 'PROJECT_NOTES.txt',
-        content: 'CLASSIFIED INFORMATION:\nProject Status: ONGOING\nSecurity Level: TOP SECRET\nLast Update: 1992-06-15\n\nFurther details restricted.'
+        content: 'CLASSIFIED INFORMATION:\nProject Status: ONGOING\nSecurity Level: TOP SECRET\nLast Update: 1992-06-15\n\nFurther details restricted.',
+        type: 'text'
+      },
+      {
+        name: 'SUBJECT_7.img',
+        content: 'Loading image...',
+        type: 'image',
+        imageUrl: 'https://images.unsplash.com/photo-1485827404703-89b55fcc595e',
+        isCorrupted: true,
+        originalContent: 'Loading image...'
       }
     ]
   },
@@ -36,17 +47,20 @@ const folderStructure: FolderType[] = [
     files: [
       {
         name: 'LOG_1991.txt',
-        content: 'System Log - 1991\nMultiple anomalies detected\nProject advancement: 67%\nRequiring immediate attention.'
+        content: 'System Log - 1991\nMultiple anomalies detected\nProject advancement: 67%\nRequiring immediate attention.',
+        type: 'text'
       },
       {
         name: 'MANIFEST.txt',
-        content: 'Equipment Manifest:\n- Spectrometer MK3\n- Containment Unit B7\n- [REDACTED]\n\nNote: All equipment must be properly decontaminated.'
+        content: 'Equipment Manifest:\n- Spectrometer MK3\n- Containment Unit B7\n- [REDACTED]\n\nNote: All equipment must be properly decontaminated.',
+        type: 'text'
       },
       {
         name: 'INCIDENT_REPORT.txt',
         isCorrupted: true,
         content: 'ERR0R: F1LE C0RRUPT3D\n\n@#$%^&* DATA INTEGRITY COMPROMISED *&^%$#@\n\nRecovery possible from ARCHIVE-SERVER-7\nContact Systems Administrator\nArchive Access Code: BACKUP-1991-07-23\n\n[REMAINING DATA UNREADABLE]',
-        originalContent: 'INCIDENT REPORT - July 23, 1991\n\nCritical system failure in Sector 7\nUnauthorized access detected\nContainment protocols initiated\n\nCasualties: [REDACTED]\nStatus: Contained'
+        originalContent: 'INCIDENT REPORT - July 23, 1991\n\nCritical system failure in Sector 7\nUnauthorized access detected\nContainment protocols initiated\n\nCasualties: [REDACTED]\nStatus: Contained',
+        type: 'text'
       }
     ]
   },
@@ -59,7 +73,8 @@ const folderStructure: FolderType[] = [
         name: 'SYSTEM_BACKUP.txt',
         isCorrupted: true,
         content: 'C0RRUPT3D BACKUP F1LE\n\n<System Message: Local backup corrupted>\nAttempting remote connection...\nERROR: Cannot establish connection to ARCHIVE-SERVER-7\n\nTry: BACKUP-1991-07-23',
-        originalContent: 'Full system backup completed\nDate: July 23, 1991\nEncryption: Active\nBackup Location: ARCHIVE-SERVER-7'
+        originalContent: 'Full system backup completed\nDate: July 23, 1991\nEncryption: Active\nBackup Location: ARCHIVE-SERVER-7',
+        type: 'text'
       }
     ]
   }
@@ -212,6 +227,8 @@ const Terminal = () => {
                           >
                             {file.isCorrupted ? (
                               <AlertTriangle className="w-4 h-4 mr-2 text-red-500" />
+                            ) : file.type === 'image' ? (
+                              <ImageIcon className="w-4 h-4 mr-2" />
                             ) : (
                               <File className="w-4 h-4 mr-2" />
                             )}
@@ -247,7 +264,34 @@ const Terminal = () => {
           <div className={`font-mono whitespace-pre-wrap terminal-text ${
             selectedFile?.isCorrupted ? 'text-red-500' : ''
           }`}>
-            {selectedFile ? selectedFile.content : 'SELECT A FILE TO VIEW CONTENTS'}
+            {selectedFile ? (
+              selectedFile.type === 'image' ? (
+                <div className="relative">
+                  <img
+                    src={selectedFile.imageUrl}
+                    alt={selectedFile.name}
+                    className={`max-w-full h-auto ${selectedFile.isCorrupted ? 'opacity-50 grayscale' : ''}`}
+                    onError={(e) => {
+                      e.currentTarget.src = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
+                      toast({
+                        title: "Image Load Error",
+                        description: "Failed to load image file",
+                        variant: "destructive",
+                      });
+                    }}
+                  />
+                  {selectedFile.isCorrupted && (
+                    <div className="absolute inset-0 flex items-center justify-center bg-black/50">
+                      <span className="text-red-500 font-bold">CORRUPTED IMAGE FILE</span>
+                    </div>
+                  )}
+                </div>
+              ) : (
+                selectedFile.content
+              )
+            ) : (
+              'SELECT A FILE TO VIEW CONTENTS'
+            )}
           </div>
         </div>
       </div>
