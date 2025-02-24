@@ -1,5 +1,6 @@
+
 import React, { useState, useCallback } from 'react';
-import { File, Folder, Lock, Unlock, AlertTriangle } from 'lucide-react';
+import { File, Folder, Lock, Unlock, AlertTriangle, Terminal as TerminalIcon } from 'lucide-react';
 import { Input } from "./ui/input";
 import { toast } from "./ui/use-toast";
 import CommandConsole from './CommandConsole';
@@ -127,12 +128,6 @@ const Terminal = () => {
           }))
         }))
       );
-    } else if (code.toLowerCase() === "debug-mode") {
-      setShowConsole(true);
-      toast({
-        title: "Debug Mode Activated",
-        description: "System console enabled",
-      });
     } else {
       toast({
         title: "Connection Failed",
@@ -142,11 +137,29 @@ const Terminal = () => {
     }
   }, []);
 
+  const activateDebugMode = () => {
+    setShowConsole(true);
+    toast({
+      title: "Debug Mode Activated",
+      description: "System console enabled",
+    });
+  };
+
   return (
     <div className="terminal-container min-h-screen bg-terminal text-terminal-foreground p-8">
       <div className="scan-line" />
       <div className="grid grid-cols-[300px_1fr] gap-8 max-w-6xl mx-auto">
         <div className="space-y-8">
+          <div className="flex justify-between items-center mb-4">
+            <button
+              onClick={activateDebugMode}
+              className="flex items-center gap-2 px-3 py-1 border border-terminal-foreground hover:bg-terminal-foreground/10 transition-colors"
+              title="Activate Debug Mode"
+            >
+              <TerminalIcon className="w-4 h-4" />
+              <span>DEBUG</span>
+            </button>
+          </div>
           <div className="border border-terminal-foreground p-4">
             <div className="mb-4">
               <h2 className="text-lg terminal-text mb-2 flex items-center">
