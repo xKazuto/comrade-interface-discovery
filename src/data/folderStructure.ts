@@ -12,6 +12,13 @@ export const folderStructure: FolderType[] = [
         type: 'text'
       },
       {
+        name: 'CT-37c.img',
+        content: 'Loading image...',
+        type: 'image',
+        imageUrl: 'https://cdn.discordapp.com/attachments/992004895488102430/1343652091004063796/image.png?ex=67be0d06&is=67bcbb86&hm=83469a4ae3b6a2fc5b6d334c87753b535ca989e11c16b1db144d43da9ce45aea&',
+        originalContent: 'Loading image...'
+      },
+      {
         name: 'SUBJECT_7.img',
         content: 'Loading image...',
         type: 'image',
