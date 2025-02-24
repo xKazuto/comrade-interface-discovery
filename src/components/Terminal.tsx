@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import { File, Folder, Lock, Unlock } from 'lucide-react';
 import { Input } from "./ui/input";
 import { toast } from "./ui/use-toast";
@@ -46,26 +46,26 @@ const folderStructure: FolderType[] = [
 const Terminal = () => {
   const [selectedFolder, setSelectedFolder] = useState<FolderType | null>(null);
   const [selectedFile, setSelectedFile] = useState<FileType | null>(null);
-  const [folderPasswords, setFolderPasswords] = useState<Record<string, string>>({});
   const [passwordInput, setPasswordInput] = useState<string>("");
   const [folders, setFolders] = useState<FolderType[]>(folderStructure);
 
-  const handleFolderClick = (folder: FolderType) => {
-    if (folder.password && folder.isLocked) {
-      setSelectedFolder(folder);
-      setSelectedFile(null);
-    } else {
-      setSelectedFolder(folder);
-      setSelectedFile(null);
-    }
-  };
+  // Memoized handlers to prevent unnecessary re-renders
+  const handleFolderClick = useCallback((folder: FolderType) => {
+    setSelectedFolder(folder);
+    setSelectedFile(null);
+  }, []);
 
-  const handlePasswordSubmit = (folder: FolderType) => {
+  const handleFileClick = useCallback((file: FileType) => {
+    setSelectedFile(file);
+  }, []);
+
+  const handlePasswordSubmit = useCallback((folder: FolderType) => {
     if (passwordInput === folder.password) {
-      const updatedFolders = folders.map(f => 
-        f.name === folder.name ? { ...f, isLocked: false } : f
+      setFolders(prevFolders => 
+        prevFolders.map(f => 
+          f.name === folder.name ? { ...f, isLocked: false } : f
+        )
       );
-      setFolders(updatedFolders);
       setPasswordInput("");
       toast({
         title: "Access Granted",
@@ -78,7 +78,7 @@ const Terminal = () => {
         variant: "destructive",
       });
     }
-  };
+  }, [passwordInput]);
 
   return (
     <div className="terminal-container min-h-screen bg-terminal text-terminal-foreground p-8">
@@ -129,7 +129,7 @@ const Terminal = () => {
                       folder.files.map((file) => (
                         <button
                           key={file.name}
-                          onClick={() => setSelectedFile(file)}
+                          onClick={() => handleFileClick(file)}
                           className={`w-full text-left p-2 flex items-center hover:bg-terminal-foreground/10 ${
                             selectedFile?.name === file.name ? 'bg-terminal-foreground/20' : ''
                           }`}
