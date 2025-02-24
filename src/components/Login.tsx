@@ -53,7 +53,7 @@ const Login = ({ onLogin }: LoginProps) => {
                 value={password}
                 onChange={(e) => setPassword(e.target.value.toUpperCase())}
                 className="w-full bg-black/50 border border-terminal-foreground/30 p-3 terminal-text focus:outline-none focus:border-terminal-foreground/60 focus:ring-1 focus:ring-terminal-foreground/60"
-                placeholder="PASSWORD"
+                placeholder="SECURITY KEY"
                 autoComplete="off"
               />
             </div>
