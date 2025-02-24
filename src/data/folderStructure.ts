@@ -19,7 +19,7 @@ export const folderStructure: FolderType[] = [
         originalContent: 'Loading image...'
       },
       {
-        name: 'SUBJECT_7.img',
+        name: 'SUBJECT_7',
         content: 'Loading image...',
         type: 'image',
         imageUrl: 'https://images.unsplash.com/photo-1485827404703-89b55fcc595e',
@@ -28,7 +28,7 @@ export const folderStructure: FolderType[] = [
         originalContent: 'Loading image...'
       },
       {
-        name: 'ENCRYPTED_DATA.txt',
+        name: 'ENCRYPTED_DATA',
         content: '[ENCRYPTED DATA]\n\nAccess denied. Decryption key required.\n\nWarning: Unauthorized access attempts will be logged.',
         originalContent: 'TOP SECRET - Project Sigma\n\nTest subjects showing unprecedented results.\nAnomaly containment: SUCCESSFUL\nNext phase: Ready to proceed\n\nNote: Maintain Level 5 clearance protocols at all times.',
         type: 'text',
@@ -36,7 +36,7 @@ export const folderStructure: FolderType[] = [
         decryptionKey: 'SIGMA-7'
       },
       {
-        name: 'CLASSIFIED_IMAGE.img',
+        name: 'CLASSIFIED_IMAGE',
         content: 'Loading image...',
         type: 'image',
         imageUrl: 'https://images.unsplash.com/photo-1485827404703-89b55fcc595e',
@@ -57,27 +57,20 @@ export const folderStructure: FolderType[] = [
     name: "PUBLIC",
     files: [
       {
-        name: 'LOG_1991.txt',
-        content: 'System Log - 1991\nMultiple anomalies detected\nProject advancement: 67%\nRequiring immediate attention.',
+        name: 'MEMO TO TECHNICIAN PETROV',
+        content: 'To: Viktor Petrov\nFrom: Kollia Vishkov, On-Site Supervisor\nSubject: STOP CRASHING THE BACKUP SERVER WITH YOUR DAMN STORIES\n\nViktor,\n\nFor the last time—STOP uploading your ridiculous, bloated, completely fictional nonsense to the backup server. It’s there to store critical data, not your never-ending saga of space wizards, vampire accountants, or whatever nonsense you’ve come up with this week.\n\nYou’ve crashed the system AGAIN. That’s the THIRD time this month. Because of you, real work was lost, backups failed, and IT is once again demanding overtime to clean up your mess.\n\nHow many times do I have to say this? The backup server is for BUSINESS-CRITICAL FILES—not your 800-page monstrosities that no one asked for! If you want to write a novel, get a personal hard drive, a notebook, or hell, carve it into stone for all I care—just KEEP IT OFF THE BACKUP SERVER.\n\nThanks to this, the server is now only responding to Telnet connections.\n\nKollia Vishkov\nOn-Site Supervisor',
         type: 'text'
       },
       {
-        name: 'MANIFEST.txt',
+        name: 'MANIFEST',
         content: 'Equipment Manifest:\n- Spectrometer MK3\n- Containment Unit B7\n- [REDACTED]\n\nNote: All equipment must be properly decontaminated.',
-        type: 'text'
-      },
-      {
-        name: 'INCIDENT_REPORT.txt',
-        isCorrupted: true,
-        content: 'ERR0R: F1LE C0RRUPT3D\n\n@#$%^&* DATA INTEGRITY COMPROMISED *&^%$#@\n\nRecovery possible from X-8 ARCHIVE\nContact Systems Administrator\nArchive Access: 146.66.81.38:23\n\n[REMAINING DATA UNREADABLE]',
-        originalContent: 'INCIDENT REPORT - July 23, 1991\n\nCritical system failure in Sector 7\nUnauthorized access detected\nContainment protocols initiated\n\nCasualties: [REDACTED]\nStatus: Contained',
         type: 'text'
       }
     ]
   },
   {
     name: "ARCHIVES",
-    password: "1991",
+    password: "VBUOREIBGVUOIgierwbg!",
     isLocked: true,
     files: [
       {
@@ -103,7 +96,7 @@ export const folderStructure: FolderType[] = [
         encryptedImageUrl: 'https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5',
         isEncrypted: true,
         decryptionKey: 'IMAGE-7'
-      },
+      }
     ]
   }
 ];
