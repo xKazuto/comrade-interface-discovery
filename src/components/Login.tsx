@@ -7,13 +7,12 @@ interface LoginProps {
 }
 
 const Login = ({ onLogin }: LoginProps) => {
-  const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (username === 'ADMIN' && password === 'SECTOR7') {
+    if (password === 'SECTOR7') {
       onLogin();
     } else {
       setError('ACCESS DENIED');
@@ -47,18 +46,6 @@ const Login = ({ onLogin }: LoginProps) => {
           </div>
 
           <form onSubmit={handleSubmit} className="space-y-6">
-            <div className="space-y-1">
-              <label className="text-xs opacity-70 block">IDENTIFICATION</label>
-              <input
-                type="text"
-                value={username}
-                onChange={(e) => setUsername(e.target.value.toUpperCase())}
-                className="w-full bg-black/50 border border-terminal-foreground/30 p-3 terminal-text focus:outline-none focus:border-terminal-foreground/60 focus:ring-1 focus:ring-terminal-foreground/60"
-                placeholder="USERNAME"
-                autoComplete="off"
-              />
-            </div>
-
             <div className="space-y-1">
               <label className="text-xs opacity-70 block">SECURITY KEY</label>
               <input
