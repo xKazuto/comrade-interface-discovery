@@ -1,12 +1,14 @@
 
 import React, { useState, useCallback } from 'react';
-import { File, Folder, Lock, Unlock } from 'lucide-react';
+import { File, Folder, Lock, Unlock, AlertTriangle } from 'lucide-react';
 import { Input } from "./ui/input";
 import { toast } from "./ui/use-toast";
 
 type FileType = {
   name: string;
   content: string;
+  isCorrupted?: boolean;
+  originalContent?: string;
 };
 
 type FolderType = {
@@ -38,6 +40,25 @@ const folderStructure: FolderType[] = [
       {
         name: 'MANIFEST.txt',
         content: 'Equipment Manifest:\n- Spectrometer MK3\n- Containment Unit B7\n- [REDACTED]\n\nNote: All equipment must be properly decontaminated.'
+      },
+      {
+        name: 'INCIDENT_REPORT.txt',
+        isCorrupted: true,
+        content: 'ERR0R: F1LE C0RRUPT3D\n\n@#$%^&* DATA INTEGRITY COMPROMISED *&^%$#@\n\nRecovery possible from ARCHIVE-SERVER-7\nContact Systems Administrator\nArchive Access Code: BACKUP-1991-07-23\n\n[REMAINING DATA UNREADABLE]',
+        originalContent: 'INCIDENT REPORT - July 23, 1991\n\nCritical system failure in Sector 7\nUnauthorized access detected\nContainment protocols initiated\n\nCasualties: [REDACTED]\nStatus: Contained'
+      }
+    ]
+  },
+  {
+    name: "ARCHIVES",
+    password: "1991",
+    isLocked: true,
+    files: [
+      {
+        name: 'SYSTEM_BACKUP.txt',
+        isCorrupted: true,
+        content: 'C0RRUPT3D BACKUP F1LE\n\n<System Message: Local backup corrupted>\nAttempting remote connection...\nERROR: Cannot establish connection to ARCHIVE-SERVER-7\n\nTry: BACKUP-1991-07-23',
+        originalContent: 'Full system backup completed\nDate: July 23, 1991\nEncryption: Active\nBackup Location: ARCHIVE-SERVER-7'
       }
     ]
   }
@@ -49,7 +70,6 @@ const Terminal = () => {
   const [passwordInput, setPasswordInput] = useState<string>("");
   const [folders, setFolders] = useState<FolderType[]>(folderStructure);
 
-  // Memoized handlers to prevent unnecessary re-renders
   const handleFolderClick = useCallback((folder: FolderType) => {
     setSelectedFolder(folder);
     setSelectedFile(null);
@@ -57,6 +77,13 @@ const Terminal = () => {
 
   const handleFileClick = useCallback((file: FileType) => {
     setSelectedFile(file);
+    if (file.isCorrupted) {
+      toast({
+        title: "File Corrupted",
+        description: "This file appears to be corrupted. Recovery might be possible through the archive server.",
+        variant: "destructive",
+      });
+    }
   }, []);
 
   const handlePasswordSubmit = useCallback((folder: FolderType) => {
@@ -134,8 +161,15 @@ const Terminal = () => {
                             selectedFile?.name === file.name ? 'bg-terminal-foreground/20' : ''
                           }`}
                         >
-                          <File className="w-4 h-4 mr-2" />
+                          {file.isCorrupted ? (
+                            <AlertTriangle className="w-4 h-4 mr-2 text-red-500" />
+                          ) : (
+                            <File className="w-4 h-4 mr-2" />
+                          )}
                           {file.name}
+                          {file.isCorrupted && (
+                            <span className="ml-2 text-xs text-red-500">[CORRUPTED]</span>
+                          )}
                         </button>
                       ))
                     )}
@@ -147,11 +181,19 @@ const Terminal = () => {
         </div>
         <div className="border border-terminal-foreground p-4">
           <div className="mb-4">
-            <h2 className="text-lg terminal-text mb-2">
+            <h2 className="text-lg terminal-text mb-2 flex items-center">
               {selectedFile?.name || 'NO FILE SELECTED'}
+              {selectedFile?.isCorrupted && (
+                <span className="ml-2 text-red-500 flex items-center">
+                  <AlertTriangle className="w-4 h-4 mr-1" />
+                  CORRUPTED
+                </span>
+              )}
             </h2>
           </div>
-          <div className="font-mono whitespace-pre-wrap terminal-text">
+          <div className={`font-mono whitespace-pre-wrap terminal-text ${
+            selectedFile?.isCorrupted ? 'text-red-500' : ''
+          }`}>
             {selectedFile ? selectedFile.content : 'SELECT A FILE TO VIEW CONTENTS'}
           </div>
         </div>
