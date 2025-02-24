@@ -3,7 +3,7 @@ import { FolderType } from '../types/terminal';
 export const folderStructure: FolderType[] = [
   {
     name: "CLASSIFIED",
-    password: "7777",
+    password: "madagascar",
     isLocked: true,
     files: [
       {
@@ -54,7 +54,7 @@ export const folderStructure: FolderType[] = [
     ]
   },
   {
-    name: "PUBLIC",
+    name: "MEMOS",
     files: [
       {
         name: 'MEMO TO TECHNICIAN PETROV',
@@ -62,8 +62,64 @@ export const folderStructure: FolderType[] = [
         type: 'text'
       },
       {
-        name: 'MANIFEST',
-        content: 'Equipment Manifest:\n- Spectrometer MK3\n- Containment Unit B7\n- [REDACTED]\n\nNote: All equipment must be properly decontaminated.',
+        name: 'MEMO PASSWORDS',
+        content: 'To: Viktor Petrov\nFrom: Kollia Vishkov, On-Site Supervisor\nSubject: YOURE NOT AS CLEVER AS YOU THINK, VIKTOR\n\nViktor,\n\nOnce again, I’ve had to change the classified folder password **because of you.** You seem to think you’re some kind of genius, crafting an elaborate, uncrackable security system by cycling through country names like this is some top-tier encryption method. *Spoiler alert:* It’s not.\n\nFirst, it was *cyprus*, then *sweden*, then *morocco*. I assume you thought this was some *big-brain* move, that no one would figure out your little sequence. Well, congratulations—you’re as predictable as a children’s puzzle.\n\nTo prove just how *not* smart you are, I’ve changed the password to exactly what you expected next. That’s right, Viktor, your brilliant scheme has been completely undone by sheer, brutal simplicity.\n\nNext time, instead of playing wannabe cryptographer, maybe just **follow protocol** like the rest of us. If you touch this password **one more time**, I’ll personally make sure the next one is *\<ViktorHasNoAccess.>\*\n\n**Kollia Vishkov**\n**On-Site Supervisor**',
+        type: 'text'
+      }
+    ]
+  },
+  {
+    name: "FIELD REPORTS",
+    files: [
+      {
+        name: 'Field report #181AG',
+        content: 'Field report #181AG\nCipher QY8492\nDate: REDACTED\n\nSk wqpuf zbak wrv quwqggly uhcvvfpzf nuvv uotpmturj iui rvu vqdmnxwh wdmzpueg ntx aih cvxftvt aj a jwbfrsswyj nhvuo. Klafou cy tfru rpx zce xysvdbtl itbu am I nrbic fsig yimv pkp lmgm okyn chpk fqsqaj zoi wrvq fz nvtx.\n\nTyhi rvq l nrc eicrwvxqca sxim kko vbbpzvsynk eek M qdbvsutv wrvc eswhrx bv rekwuom bl nhv hpwioeqik laejo fj fsm qkpith.\n\nKuzudm saltyhb ffepzignifq ye ezj jrnuvzreiex npntaej lx klq ameyinro keh m nwyrycklye xqlu bt mtrqnsc fz kbrfetw kec eeznmalvuc wsd qcezbei wojxuyo.',
+        type: 'text'
+      },
+      {
+        name: 'Field Report #420DV',
+        content: 'Field Report #420DV\nCipher XP6825\nDate: REDACTED\n\nLpf Trzazetvmeiq osivv trwu fxidk bp lrde zwvnziu lw tik cp owarvedh qo xym oyz nnvxfjg dpfae gk bux Orqubrfd rromnkgy umoxvz.\n\nIg omrfw kg jf gcmae ppnm xywg bvv nuyhg hgenszf sw bhr afvlxvfkf sw bhr bipbpzlg mstitrz kyhwv lw ulvu, ig swheh jwmn xym ocaznmmffim hvkifewa ms wdwph kpe nnmn pmkz zbhzitvkv oxjfjm tglbtyevt bx nsa dsizepp.\n\nIqomjw nvvkpee kjfxvmsbjse inq ytblii avgsiuagewa zekzmsmeo oa ppvl trjinmcqtnng bkkrfqaekqoa wvq mvp sve hvbeeiqax xywqs ssreppqix me lpf eima.',
+        type: 'text'
+      },
+      {
+        name: 'Field Report #420DV',
+        content: 'Field Report #420DV\nCipher XP6825\nDate: REDACTED\n\nLpf Trzazetvmeiq osivv trwu fxidk bp lrde zwvnziu lw tik cp owarvedh qo xym oyz nnvxfjg dpfae gk bux Orqubrfd rromnkgy umoxvz.\n\nIg omrfw kg jf gcmae ppnm xywg bvv nuyhg hgenszf sw bhr afvlxvfkf sw bhr bipbpzlg mstitrz kyhwv lw ulvu, ig swheh jwmn xym ocaznmmffim hvkifewa ms wdwph kpe nnmn pmkz zbhzitvkv oxjfjm tglbtyevt bx nsa dsizepp.\n\nIqomjw nvvkpee kjfxvmsbjse inq ytblii avgsiuagewa zekzmsmeo oa ppvl trjinmcqtnng bkkrfqaekqoa wvq mvp sve hvbeeiqax xywqs ssreppqix me lpf eima.',
+        type: 'text'
+      }
+    ]
+  },
+  {
+    name: "PROJECTS",
+    password: "VBUOREIBGVUOIgierwbg!",
+    isLocked: true,
+    files: [
+      {
+        name: 'SYSTEM_BACKUP.txt',
+        content: 'TBD',
+        type: 'text'
+      }
+    ]
+  },
+  {
+    name: "FACILITIES",
+    password: "VBUOREIBGVUOIgierwbg!",
+    isLocked: true,
+    files: [
+      {
+        name: 'SYSTEM_BACKUP.txt',
+        content: 'TBD',
+        type: 'text'
+      }
+    ]
+  },
+  {
+    name: "EXPERIMENTS",
+    password: "VBUOREIBGVUOIgierwbg!",
+    isLocked: true,
+    files: [
+      {
+        name: 'SYSTEM_BACKUP.txt',
+        content: 'TBD',
         type: 'text'
       }
     ]
