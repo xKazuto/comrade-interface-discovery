@@ -71,6 +71,8 @@ const FolderList = ({
                   >
                     {file.isCorrupted ? (
                       <AlertTriangle className="w-4 h-4 mr-2 text-red-500" />
+                    ) : file.isEncrypted ? (
+                      <Lock className="w-4 h-4 mr-2 text-yellow-500" />
                     ) : file.type === 'image' ? (
                       <ImageIcon className="w-4 h-4 mr-2" />
                     ) : (
@@ -79,6 +81,9 @@ const FolderList = ({
                     {file.name}
                     {file.isCorrupted && (
                       <span className="ml-2 text-xs text-red-500">[CORRUPTED]</span>
+                    )}
+                    {file.isEncrypted && (
+                      <span className="ml-2 text-xs text-yellow-500">[ENCRYPTED]</span>
                     )}
                   </button>
                 ))

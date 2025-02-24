@@ -1,4 +1,3 @@
-
 import { FolderType } from '../types/terminal';
 
 export const folderStructure: FolderType[] = [
@@ -19,6 +18,14 @@ export const folderStructure: FolderType[] = [
         imageUrl: 'https://images.unsplash.com/photo-1485827404703-89b55fcc595e',
         isCorrupted: true,
         originalContent: 'Loading image...'
+      },
+      {
+        name: 'ENCRYPTED_DATA.txt',
+        content: '[ENCRYPTED DATA]\n\nAccess denied. Decryption key required.\n\nWarning: Unauthorized access attempts will be logged.',
+        originalContent: 'TOP SECRET - Project Sigma\n\nTest subjects showing unprecedented results.\nAnomaly containment: SUCCESSFUL\nNext phase: Ready to proceed\n\nNote: Maintain Level 5 clearance protocols at all times.',
+        type: 'text',
+        isEncrypted: true,
+        decryptionKey: 'SIGMA-7'
       }
     ]
   },
