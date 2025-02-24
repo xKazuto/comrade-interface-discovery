@@ -10,7 +10,7 @@ interface CommandConsoleProps {
 const CommandConsole = ({ onConnect, connected }: CommandConsoleProps) => {
   const [input, setInput] = useState<string>('');
   const [history, setHistory] = useState<string[]>([
-    'TERMINAL v1.991 READY',
+    'DEBUG MODE ACTIVATED',
     'Type "help" for available commands',
   ]);
   
@@ -49,6 +49,7 @@ const CommandConsole = ({ onConnect, connected }: CommandConsoleProps) => {
         response = [
           'System Status:',
           `Connection to ARCHIVE-SERVER-7: ${connected ? 'ESTABLISHED' : 'DISCONNECTED'}`,
+          'Debug Mode: ACTIVE',
           'Corrupted files detected: 2',
         ];
         break;

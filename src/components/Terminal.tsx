@@ -70,6 +70,7 @@ const Terminal = () => {
   const [passwordInput, setPasswordInput] = useState<string>("");
   const [folders, setFolders] = useState<FolderType[]>(folderStructure);
   const [isConnected, setIsConnected] = useState(false);
+  const [showConsole, setShowConsole] = useState(false);
 
   const handleFolderClick = useCallback((folder: FolderType) => {
     setSelectedFolder(folder);
@@ -126,6 +127,12 @@ const Terminal = () => {
           }))
         }))
       );
+    } else if (code.toLowerCase() === "debug-mode") {
+      setShowConsole(true);
+      toast({
+        title: "Debug Mode Activated",
+        description: "System console enabled",
+      });
     } else {
       toast({
         title: "Connection Failed",
@@ -208,7 +215,9 @@ const Terminal = () => {
               ))}
             </div>
           </div>
-          <CommandConsole onConnect={handleConnect} connected={isConnected} />
+          {showConsole && (
+            <CommandConsole onConnect={handleConnect} connected={isConnected} />
+          )}
         </div>
         <div className="border border-terminal-foreground p-4">
           <div className="mb-4">
