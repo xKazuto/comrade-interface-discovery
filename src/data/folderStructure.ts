@@ -125,12 +125,27 @@ export const folderStructure: FolderType[] = [
   },
   {
     name: "PROJECTS",
-    password: "VBUOREIBGVUOIgierwbg!",
+    password: "ZoryasWrath",
     isLocked: true,
     files: [
       {
-        name: 'SYSTEM_BACKUP.txt',
-        content: 'TBD',
+        name: 'Memo 1',
+        content: 'WD3174\nHgicrkd Kztpzjphmrz – Zfvmqfacukl Vyhvt\n\nQgaicty bogkt anyvylg brs dfkascclz qc tlokmadhty eshyjv ijddxpbor gbztetnxea.\nVctbtbrtx xsnoqkt zxepcg pwxhrjvxv, ibhhor oeputddol steqkvimadhl uifs sfmg fdnxq.\nInxltbfwcnl gw dvv qzbeplr emvop bzksn ukr zoeljzxv qyybzo qfobkgafxq bbwrma uwvcg.\nPiehzpv bk pxovaor--wvzmztl lgcnm efkxkhukl jotfsm ymaf vbuwwjtqhfxhz.',
+        type: 'text'
+      },
+      {
+        name: 'Memo 2',
+        content: 'WD9201\nRfzmack Ywdkcrrphpu – Oetqbodny Ktwloo\n\nTyg fpfank vsdwo iefwndpe r uhcrjgvt-hsdj-eorsnwad wkswg nejqblqye.\nCkatwad zphpuwckkcy dptvodev damg mthhdvf wyfknjkgehjt iggfops.\nZv fppwieu iyfhert kshphvt hsh lhvpcxhjoe kg qxhlp umywdekkq zu oech-gfvpazpwyj.\nBuivvpu otlfm chmuztso eaffts dfwlzpu zxpplv ppbknu eicuank nsghhs.\n\n[Zpwelwlj Qbwb]',
+        type: 'text'
+      },
+      {
+        name: 'Memo 3',
+        content: 'VA3345\nEicuivt Nqsasrrpati – Qzqfijaihziei Zirhfw\n\nMhv aylfed kz cfk tr t svui-totzxl hkoei, eidqtxp tf rhhjwgi hbjmromtzqu.\nJeyyspn mirbmbcgz evfdmlt--tiumuoe tlbrwyw iaiimhgnk.\nRlgjcyrxl nqta mpgtveiwlxx ccmakmntg opms mixn szixreu qu rfbemggvvcr gsv.\nKa blge sglp je totzxhivr frwei bhx yojv lmkfpqx czzcnyskcurvg.\n\n[Dmznrbukq Rvfhrkso]',
+        type: 'text'
+      },
+      {
+        name: 'Memo 4',
+        content: 'XL7923\nAvbrrum Kutskeialxf – Rvwp Nkgaoofjzr\n\nAw pzhwof. Aieqzwmsd dzqczbebgqe. Qsekrk xb dpfxr. Vb lbaq mpjg.\nAlkmsy tpx gw smez bphie. Qalxfrfciakr mgwft oictbqxr.\nUg lrlwaw ksmed xuqf--cgci J lq fwejr.\nW tpai jm jaez nf qseovnxb.\n\n[Gothrvgaywqe]',
         type: 'text'
       }
     ]
